@@ -1,6 +1,6 @@
 # Introduction
 
-An API for the tesla.  Woohoo! The goal is to copy data into grafana for tracking, etc.
+An API for the Tesla.  Woohoo! The goal is to copy data into grafana for tracking, etc.
 
 ## Setup
 
