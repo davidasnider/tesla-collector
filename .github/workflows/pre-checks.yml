@@ -84,3 +84,16 @@ jobs:
       - uses: hmarr/auto-approve-action@v2.0.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+  auto-merge:
+    runs-on: ubuntu-latest
+    needs:
+      - pr-approve
+    steps:
+      - uses: reitermarkus/automerge@v1
+        with:
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          merge-method: rebase
+          do-not-merge-labels: never-merge
+          pull-request: ${{ github.event.inputs.pull-request }}
+          dry-run: true
