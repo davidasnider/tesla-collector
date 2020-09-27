@@ -1,4 +1,4 @@
-FROM python:slim as BUILD
+FROM python:buster as BUILD
 
 COPY requirements.txt /requirements.txt
 RUN useradd -m -u 10001 tesla
