@@ -29,4 +29,4 @@ jobs:
           platforms: linux/amd64,linux/arm/v7
           push: true
           tags: |
-            ghcr.io/davidasnider/tesla-collector/tesla:${{ GITHUB_REF }}
+            ghcr.io/davidasnider/tesla-collector/tesla:${GITHUB_REF}
