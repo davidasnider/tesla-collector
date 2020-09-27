@@ -90,7 +90,9 @@ jobs:
     needs:
       - pr-approve
     steps:
-      - uses: actions/labeler@v2
+      - uses: christianvuerings/add-labels@v1
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          configuration-path: .github/autolabel.yml
+          labels: |
+            automerge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
