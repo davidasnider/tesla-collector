@@ -1,10 +1,8 @@
-
-
-namespace: rundeck
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+bases:
+- ../base
+namespace: rundeck
 images:
 - name: ghcr.io/davidasnider/tesla-collector/tesla
   newTag: v1.0.8
-resources:
-- ../base
