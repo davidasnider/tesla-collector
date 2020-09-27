@@ -4,10 +4,11 @@ An API for the Tesla.  Woohoo! The goal is to copy data into grafana for trackin
 
 ## Setup
 
-## Build Script
+## GitHub Actions
 
-Run the command `./build.sh` to rebuild the container and update the manifest on our
-registry.
+You can use the local `build.sh` script for testing, but production changes are done
+with the `.github` folder workflows. You must do a PR, and if all tests pass it
+will be automatically merged.
 
 ## Secrets
 
@@ -16,9 +17,12 @@ Secrets are stored in a kubernetes secret named `credentials` with two kv pairs:
 * `SECRET_USERNAME`
 * `SECRET_PASSWORD`
 
+These are created by ansible, if you are not using my ansible scripts, you must
+create this credential manually.
+
 ## K8s setup
 
-You will need to setup the k8s environment for the pods.  Run the `kubectl apply -k prod` from
+You will need to setup the k8s environment for the pods. Run the `kubectl apply -k prod` from
 the to `k8s` directory create the namespace and to setup the secrets.
 
 ## Running manually
