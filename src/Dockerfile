@@ -1,4 +1,4 @@
-FROM python:buster as BUILD
+FROM python:3.8-buster as BUILD
 
 COPY requirements.txt /requirements.txt
 RUN useradd -m -u 10001 tesla
@@ -6,7 +6,7 @@ USER 10001
 RUN pip install --user -r requirements.txt
 
 
-FROM python:slim-buster as FINAL
+FROM python:3.8-slim-buster as FINAL
 
 RUN useradd -m -u 10001 tesla
 USER 10001
