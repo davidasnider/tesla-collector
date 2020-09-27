@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: tesla-collector
-        image: registry.thesniderpad.com/tesla:latest
+        image: ghcr.io/davidasnider/tesla-collector/tesla:latest
         env:
         - name: SECRET_USERNAME
           valueFrom:
