@@ -48,5 +48,4 @@ jobs:
           file: ./src/Dockerfile
           platforms: linux/amd64,linux/arm/v7
           push: false
-          tags: |
-            ghcr.io/davidasnider/tesla-collector/tesla:${VERSION}
+          tags: ghcr.io/davidasnider/tesla-collector/tesla:pr-{{ github.event.number }}
