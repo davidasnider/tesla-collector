@@ -90,7 +90,7 @@ jobs:
     needs:
       - pr-approve
     steps:
-      - uses: christianvuerings/add-labels@v1
+      - uses: christianvuerings/add-labels@v1.1
         with:
           labels: |
             automerge
