@@ -98,15 +98,19 @@ jobs:
     - name: Update kubernetes resources
       run: |
         echo TAGS!!!
-        cat ${{ steps.build-prep.outputs.tags }}
+        echo ${{ steps.build-prep.outputs.tags }}
         cd k8s/prod
-        kustomize edit set image ghcr.io/davidasnider/tesla-collector/tesla:${VERSION}
+        kustomize edit set image ${{ steps.build-prep.outputs.tags }}
         cat kustomization.yaml
 
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
+
+    - name: Display branch name
+      run: |
+        echo ${{ steps.exract_branch.outputs.branch }}
 
     - name: Commit files
       run: |
