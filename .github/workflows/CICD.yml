@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Branch name
-        run: echo running on branch ${{ github.payload.pull_request.head.ref }}
+        run: echo running on branch ${{ github.event.pull_request.head.ref }}
 
   pre-commit:
     runs-on: ubuntu-latest
