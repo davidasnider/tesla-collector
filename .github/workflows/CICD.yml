@@ -29,8 +29,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: 'main'
-          fetch-depth: ''
+          ref: "main"
+          fetch-depth: ""
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -84,12 +84,10 @@ jobs:
           tags: ${{ steps.build-prep.outputs.tags }}
 
   deploy:
-    name: Deploy
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-
       - name: Set version tags
         id: build-prep
         run: |
@@ -118,40 +116,41 @@ jobs:
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=tags::${TAGS}
           echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-    - name: Check out code
-      uses: actions/checkout@v2
 
-    - name: Setup Kustomize
-      uses: imranismail/setup-kustomize@v1
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Update kubernetes resources
-      run: |
-        echo TAGS!!!
-        echo ${{ steps.build-prep.outputs.tags }}
-        cd k8s/prod
-        kustomize edit set image ${{ steps.build-prep.outputs.tags }}
-        cat kustomization.yaml
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
+      - name: Update kubernetes resources
+        run: |
+          echo TAGS!!!
+          echo ${{ steps.build-prep.outputs.tags }}
+          cd k8s/prod
+          kustomize edit set image ${{ steps.build-prep.outputs.tags }}
+          cat kustomization.yaml
 
-    - name: Display branch name
-      run: |
-        echo ${{ steps.exract_branch.outputs.branch }}
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
 
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -am "Bump docker tag"
+      - name: Display branch name
+        run: |
+          echo ${{ steps.exract_branch.outputs.branch }}
 
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ steps.exract_branch.outputs.branch }}
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Bump docker tag"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.exract_branch.outputs.branch }}
 
   pr-approve:
     runs-on: ubuntu-latest
