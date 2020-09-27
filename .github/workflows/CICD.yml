@@ -138,15 +138,6 @@ jobs:
           kustomize edit set image ${{ steps.build-prep.outputs.tags }}
           cat kustomization.yaml
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
-      - name: Display branch name
-        run: |
-          echo ${{ steps.exract_branch.outputs.branch }}
-          echo ${GITHUB_REF##*/}
 
       - name: Commit files
         run: |
@@ -158,7 +149,7 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.exract_branch.outputs.branch }}
+          branch: ${{ github.event.pull_request.head.ref }}
 
   pr-approve:
     runs-on: ubuntu-latest
