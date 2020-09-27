@@ -188,7 +188,7 @@ jobs:
       run: |
         cd k8s/prod
         kustomize edit set image ghcr.io/davidasnider/tesla-collector/tesla:${VERSION}
-        cat kustomizaztion.yaml
+        cat kustomization.yaml
 
     - name: Commit files
       run: |
