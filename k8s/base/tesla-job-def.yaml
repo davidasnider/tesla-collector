@@ -19,6 +19,6 @@ spec:
             secretKeyRef:
               name: credentials
               key: SECRET_PASSWORD
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
       restartPolicy: Never
   backoffLimit: 4
