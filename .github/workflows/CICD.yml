@@ -6,6 +6,13 @@ on:
     branches: [main]
 
 jobs:
+  build-name:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+
   pre-commit:
     runs-on: ubuntu-latest
     steps:
@@ -139,6 +146,7 @@ jobs:
       - name: Display branch name
         run: |
           echo ${{ steps.exract_branch.outputs.branch }}
+          echo ${GITHUB_REF##*/}
 
       - name: Commit files
         run: |
