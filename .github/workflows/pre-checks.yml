@@ -96,3 +96,13 @@ jobs:
             automerge
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  automerge:
+    runs-on: ubuntu-latest
+    needs:
+      - label-pr
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.10.0"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
