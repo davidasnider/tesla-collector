@@ -97,9 +97,16 @@ jobs:
 
     - name: Update kubernetes resources
       run: |
+        echo TAGS!!!
+        cat ${{ steps.build-prep.outputs.tags }}
         cd k8s/prod
         kustomize edit set image ghcr.io/davidasnider/tesla-collector/tesla:${VERSION}
         cat kustomization.yaml
+
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
 
     - name: Commit files
       run: |
@@ -111,6 +118,7 @@ jobs:
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ steps.exract_branch.outputs.branch }}
 
   pr-approve:
     runs-on: ubuntu-latest
