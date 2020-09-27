@@ -1,6 +1,5 @@
 
-resources:
-- namespace.yaml
+bases:
 - ../base
 
 namespace: rundeck
