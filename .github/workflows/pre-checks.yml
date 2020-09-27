@@ -37,6 +37,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
+      - name: Set version tags
+        id: prep
+        run: |
+          VERSION=pr-${{ github.event.number }}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -45,4 +49,4 @@ jobs:
           platforms: linux/amd64,linux/arm/v7
           push: false
           tags: |
-            ghcr.io/davidasnider/tesla-collector/tesla:${GITHUB_REF}
+            ghcr.io/davidasnider/tesla-collector/tesla:${VERSION}
