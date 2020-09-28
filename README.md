@@ -1,5 +1,7 @@
 # Introduction
 
+![CICD](https://github.com/davidasnider/tesla-collector/workflows/Test%20Build%20Merge%20Deploy/badge.svg)
+
 An API for the Tesla.  Woohoo! The goal is to copy data into grafana for tracking, etc.
 
 ## Setup
