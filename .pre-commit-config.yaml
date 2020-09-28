@@ -15,7 +15,7 @@ repos:
     rev: v1.3.0
     hooks:
       - id: dead
-  - repo: git@github.com:Yelp/detect-secrets
+  - repo: https://github.com/Yelp/detect-secrets.git
     rev: v0.14.3
     hooks:
       - id: detect-secrets
