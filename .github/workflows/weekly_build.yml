@@ -16,7 +16,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secret.SNIDER_TOKEN }}
+          token: ${{ secrets.SNIDER_TOKEN }}
           comitter: "David Snider <david@davidsnider.org>"
           branch-suffic: random
           delete-branch: true
