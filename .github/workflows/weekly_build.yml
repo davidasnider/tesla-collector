@@ -1,0 +1,22 @@
+name: Weekly Container Updates
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  weekly-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Update date string
+        run: echo $(date "+%Y%m%d") > weekly_update.txt
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secret.SNIDER_TOKEN }}
+          comitter: "David Snider <david@davidsnider.org>"
+          branch-suffic: random
+          delete-branch: true
