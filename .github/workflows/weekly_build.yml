@@ -1,7 +1,7 @@
 name: Weekly Container Updates
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "1 1 * * 0"
 
 jobs:
   weekly-build:
@@ -17,6 +17,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.SNIDER_TOKEN }}
-          comitter: "David Snider <david@davidsnider.org>"
-          branch-suffic: random
+          committer: "David Snider <david@davidsnider.org>"
+          branch-suffix: random
           delete-branch: true
