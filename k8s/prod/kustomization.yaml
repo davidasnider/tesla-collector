@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: rundeck
 images:
 - name: ghcr.io/davidasnider/tesla-collector/tesla
-  newTag: v1.0.38
+  newTag: v1.0.39
 bases:
 - ../base
