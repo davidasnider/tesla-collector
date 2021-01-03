@@ -74,7 +74,7 @@ async def main():
     for v in vehicles:
 
         # Get python data representation of api objects
-        if v.state == "offline":
+        if v.state == "offline" or v.state == "asleep":
             print("Vehicle is not available")
             continue  # Vehicle is offline, go to the next one (should we ever have one)
         else:
