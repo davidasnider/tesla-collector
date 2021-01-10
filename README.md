@@ -16,8 +16,8 @@ will be automatically merged.
 
 Secrets are stored in a kubernetes secret named `credentials` with two kv pairs:
 
-* `SECRET_USERNAME`
-* `SECRET_PASSWORD`
+- `SECRET_USERNAME`
+- `SECRET_PASSWORD`
 
 These are created by ansible, if you are not using my ansible scripts, you must
 create this credential manually.
