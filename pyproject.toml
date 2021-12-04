@@ -1,19 +1,38 @@
-    [tool.black]
-    py36 = true
-    include = '\.pyi?$'
-    exclude = '''
-    /(
-        \.git
-      | \.hg
-      | \.mypy_cache
-      | \.tox
-      | \.venv
-      | _build
-      | buck-out
-      | build
-      | dist
+[tool.black]
+py36 = true
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
 
-      # The following are specific to Black, you probably don't want those.
-      | blib2to3
-      | tests/data
-    )/
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+)/
+'''
+
+[tool.poetry]
+name = "tesla-collector"
+version = "0.1.0"
+description = ""
+authors = ["David Snider <david@davidsnider.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+statsd = "^3.3.0"
+tesla-api = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.16.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
